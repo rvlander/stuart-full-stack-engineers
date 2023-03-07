@@ -8,7 +8,9 @@
       "build": "tsoa spec-and-routes && tsc",
       "start": "ts-node src/index.ts",
       "test": "echo \"Error: no test specified\" && exit 1",
-      "startDB": "docker run --name some-postgres -e POSTGRES_PASSWORD=test -e POSTGRES_USER=test -e POSTGRES_DATABASE=test  -p5432:5432 -d postgres"
+      "db:run": "docker run --name some-postgres -e POSTGRES_PASSWORD=test -e POSTGRES_USER=test -e POSTGRES_DATABASE=test  -p5432:5432 -d postgres",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "db:runMigrations": "npm run typeorm -- -d src/database/dataSource.ts migration:run"
    },
    "keywords": [],
    "author": "Gaëtan André",

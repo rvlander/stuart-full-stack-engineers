@@ -13,3 +13,10 @@ Install and switch to correct node environment:
 nvm install
 nvm use
 ```
+
+### Developement
+
+#### Migrations
+````
+npm run typeorm -- -d src/database/dataSource.ts migration:generate src/database/migration/<name>,
+```
