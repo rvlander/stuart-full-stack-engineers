@@ -2,10 +2,22 @@
   "name": "couriers-capacity-api",
   "version": "1.0.0",
   "description": "A microservice providing capacity of Stuart couriers",
+  "main": "build/src/server.js",
   "scripts": {
+    "build": "tsoa spec-and-routes && tsc",
+    "start": "node build/src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Gaëtan André",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "tsoa": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.14.6",
+    "typescript": "^4.9.5"
+  }
 }
