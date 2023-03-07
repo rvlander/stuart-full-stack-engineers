@@ -1,29 +1,33 @@
 {
-  "name": "couriers-capacity-api",
-  "version": "1.0.0",
-  "description": "A microservice providing capacity of Stuart couriers",
-  "main": "build/src/server.js",
-  "scripts": {
-    "dev": "NODE_ENV=development concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
-    "build": "tsoa spec-and-routes && tsc",
-    "start": "node build/src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Gaëtan André",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.2",
-    "swagger-ui-express": "^4.6.2",
-    "tsoa": "^5.1.1"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^18.14.6",
-    "@types/swagger-ui-express": "^4.1.3",
-    "concurrently": "^7.6.0",
-    "nodemon": "^2.0.21",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.5"
-  }
+   "name": "couriers-capacity-api",
+   "version": "1.0.0",
+   "description": "A microservice providing capacity of Stuart couriers",
+   "main": "build/src/server.js",
+   "scripts": {
+      "dev": "NODE_ENV=development concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+      "build": "tsoa spec-and-routes && tsc",
+      "start": "ts-node src/index.ts",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "startDB": "docker run --name some-postgres -e POSTGRES_PASSWORD=test -e POSTGRES_USER=test -e POSTGRES_DATABASE=test  -p5432:5432 -d postgres"
+   },
+   "keywords": [],
+   "author": "Gaëtan André",
+   "license": "ISC",
+   "dependencies": {
+      "express": "^4.18.2",
+      "pg": "^8.10.0",
+      "reflect-metadata": "^0.1.13",
+      "swagger-ui-express": "^4.6.2",
+      "tsoa": "^5.1.1",
+      "typeorm": "0.3.12"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.17",
+      "@types/node": "^16.11.10",
+      "@types/swagger-ui-express": "^4.1.3",
+      "concurrently": "^7.6.0",
+      "nodemon": "^2.0.21",
+      "ts-node": "10.7.0",
+      "typescript": "4.5.2"
+   }
 }

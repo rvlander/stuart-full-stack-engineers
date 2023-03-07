@@ -1,13 +1,17 @@
 import { Courier } from "./couriers"
 
+import * as couriersManager from "../../database/managers/couriersManager"
+
 export class CouriersService {
-    public upsert(id: number, max_capacity: number): Courier {
+    public async upsert(id: number, max_capacity: number): Promise<Courier> {
+        const courier = await couriersManager.upsert(id, max_capacity)
         return {
-            id, max_capacity
+            id, max_capacity: courier.maxCapacity
         }
     }
 
-    public delete(id: number) {
+    public async delete(id: number) {
+        await couriersManager.remove(id)
         return;
     }
 }
