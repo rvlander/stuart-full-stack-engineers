@@ -6,14 +6,19 @@ import {
     Delete,
     Route,
     SuccessResponse,
+    Response
   } from "tsoa";
 
   import { Courier } from "./couriers";
   import { CouriersService } from "./couriersService";
+
+  import { ValidateErrorJSON } from "../utils";
   
   @Route("couriers")
   export class CouriersController extends Controller { 
-    @SuccessResponse("201", "Created") // Custom success response
+
+    @Response<ValidateErrorJSON>(422, "Validation failed")
+    @SuccessResponse(201, "Created") // Custom success response
     @Post()
     public async createCoursier(
       @Body() requestBody: Courier
