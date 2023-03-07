@@ -12,3 +12,12 @@ export default async function () {
         console.error("Error during Data Source initialization:", err)
     })
 }
+
+export async function destroy () {
+    await AppDataSource.destroy()    .then(() => {
+        console.log("Data Source destroyed!")
+    })
+    .catch((err) => {
+        console.error("Error while destroying data source", err)
+    })
+}

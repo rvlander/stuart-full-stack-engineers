@@ -7,7 +7,8 @@
       "dev": "NODE_ENV=development concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
       "build": "tsoa spec-and-routes && tsc",
       "start": "ts-node src/index.ts",
-      "test": "echo \"Error: no test specified\" && exit 1",
+      "test": "tsoa spec-and-routes && jest",
+      "test:watch": "concurrently \"jest --watchAll\" \"nodemon -x tsoa spec-and-routes\"",
       "db:run": "docker run --name some-postgres -e POSTGRES_PASSWORD=test -e POSTGRES_USER=test -e POSTGRES_DATABASE=test  -p5432:5432 -d postgres",
       "typeorm": "typeorm-ts-node-commonjs",
       "db:runMigrations": "npm run typeorm -- -d src/database/dataSource.ts migration:run"
@@ -25,10 +26,15 @@
    },
    "devDependencies": {
       "@types/express": "^4.17.17",
+      "@types/jest": "^29.4.0",
       "@types/node": "^16.11.10",
+      "@types/supertest": "^2.0.12",
       "@types/swagger-ui-express": "^4.1.3",
       "concurrently": "^7.6.0",
+      "jest": "^29.5.0",
       "nodemon": "^2.0.21",
+      "supertest": "^6.3.3",
+      "ts-jest": "^29.0.5",
       "ts-node": "10.7.0",
       "typescript": "4.5.2"
    }

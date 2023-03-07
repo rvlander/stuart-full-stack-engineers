@@ -22,16 +22,17 @@ import {
     @Post()
     public async createCoursier(
       @Body() requestBody: Courier
-    ): Promise<void> {
+    ): Promise<Courier> {
       this.setStatus(201); // set return status 201
-      new CouriersService().upsert(requestBody.id, requestBody.max_capacity);
-      return;
+      await new CouriersService().upsert(requestBody.id, requestBody.max_capacity);
+      return requestBody;
     }
 
     @Delete("{id}")
     public async getUser(
       @Path() id: number
     ): Promise<void> {
-      return new CouriersService().delete(id);
+      await  new CouriersService().delete(id);
+      return
     }
   }
