@@ -1,4 +1,4 @@
-import initialize, { destroy, clearAll } from "../../src/database/initialize";
+import initialize, { destroy, clearAll } from "database/initialize";
 import { request } from "../helpers/app";
 import { createCourier, createNCouriers } from "../helpers/createCourier";
 import _ from "lodash";

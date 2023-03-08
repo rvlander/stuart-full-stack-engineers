@@ -1,4 +1,4 @@
-import { Courier } from "../../src/api/couriers/couriers";
+import { Courier } from "api/couriers/couriers";
 import _ from "lodash";
 
 export const createCourier = (courier: Partial<Courier> = {}): Courier => ({
