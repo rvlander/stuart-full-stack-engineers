@@ -1,4 +1,4 @@
 export interface Courier {
-    id: number,
-    max_capacity: number
+  id: number;
+  max_capacity: number;
 }
