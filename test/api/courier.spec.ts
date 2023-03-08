@@ -65,7 +65,7 @@ describe("Couriers", () => {
             expect(response.statusCode).toEqual(200)
             expect(response.body).toHaveLength(8)
 
-            expect(_.sortBy(response.body, "max_capacity")).toEqual(sortedCouriers.slice(0,8))
+            expect(_.sortBy(response.body, "id")).toEqual(_.sortBy(sortedCouriers.slice(0,8), "id"))
         })
     })
 })
