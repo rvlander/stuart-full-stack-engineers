@@ -1,0 +1,35 @@
+name: CI pipeline
+run-name: ${{ github.actor }} is running the pipeline
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.14.2 # TODO: get version from .nvmrc
+          cache: "npm"
+      - run: npm ci
+      - run: npm run checkFormat
+      - run: npm run checkLint
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18.14.2 # TODO: get version from .nvmrc
+  #         cache: "npm"
+  #     - run: npm ci
+  #     - run: npm run test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.14.2 # TODO: get version from .nvmrc
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build
