@@ -42,15 +42,15 @@ describe("Couriers", () => {
             const response = await request.delete(`/couriers/${courrierToDelete.id}`)
             
             expect(response.statusCode).toEqual(204)
-            expect(response.body).toBeUndefined()
+            expect(response.body).toEqual({})
         })
 
         it("should repond with 404 not found", async () => {
             const notFoundCourier = createCourier();
             const response = await request.delete(`/couriers/${notFoundCourier.id}`)
-            
+
             expect(response.statusCode).toEqual(204)
-            expect(response.body).toBeUndefined()
+            expect(response.body).toEqual({})
         })
 
     })
