@@ -11,7 +11,8 @@
       "test:watch": "concurrently \"jest --watchAll\" \"nodemon -x tsoa spec-and-routes\"",
       "db:run": "docker run --name some-postgres -e POSTGRES_PASSWORD=test -e POSTGRES_USER=test -e POSTGRES_DATABASE=test  -p5432:5432 -d postgres",
       "typeorm": "typeorm-ts-node-commonjs",
-      "db:runMigrations": "npm run typeorm -- -d src/database/dataSource.ts migration:run"
+      "db:runMigrations": "npm run typeorm -- -d src/database/dataSource.ts migration:run",
+      "db:psql": "docker exec -it -e PGPASSWORD=test some-postgres psql -U test -d test"
    },
    "keywords": [],
    "author": "Gaëtan André",

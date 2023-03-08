@@ -10,8 +10,7 @@ export class CouriersService {
         }
     }
 
-    public async delete(id: number) {
+    public async delete(id: number): Promise<void> {
         await couriersManager.remove(id)
-        return;
     }
 }
