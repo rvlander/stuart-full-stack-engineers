@@ -1,6 +1,8 @@
 import {
     Body,
     Controller,
+    Get,
+    Query,
     Path,
     Post,
     Delete,
@@ -30,11 +32,22 @@ import {
 
     @Delete("{id}")
     @SuccessResponse(204)
-    public async getUser(
+    public async deleteCoursier(
       @Path() id: number
     ): Promise<void> {
       this.setStatus(204)
       await  new CouriersService().delete(id);
       return undefined
+    }
+
+    @Response<ValidateErrorJSON>(422, "Validation failed")
+    @Get("lookup")
+    @SuccessResponse(200)
+    public async lookup  (
+      @Query() required_capacity: number
+    ): Promise<Courier[]> {
+      this.setStatus(200)
+      const couriers = await  new CouriersService().lookup(required_capacity);
+      return couriers
     }
   }

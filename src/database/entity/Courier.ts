@@ -7,5 +7,5 @@ export class Courier {
     id: number
     
     @Column()
-    maxCapacity: number
+    max_capacity: number
 }

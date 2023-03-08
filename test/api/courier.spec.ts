@@ -58,13 +58,14 @@ describe("Couriers", () => {
             await Promise.all(couriers.map(courier => request.post(`/couriers`).send(courier)))
 
             const sortedCouriers = _.sortBy(couriers, "max_capacity")
-            const response = await request.get('/courriers/lookup').send({
-                capacity_required: sortedCouriers[7].max_capacity
+            const response = await request.get('/couriers/lookup').query({
+                required_capacity: sortedCouriers[7].max_capacity
             })
 
             expect(response.statusCode).toEqual(200)
             expect(response.body).toHaveLength(8)
-            expect(_.sortBy(response.body, "max_capacity")).toEqual(sortedCouriers.slice(7))
+
+            expect(_.sortBy(response.body, "max_capacity")).toEqual(sortedCouriers.slice(0,8))
         })
     })
 })
