@@ -18,16 +18,35 @@ describe("Couriers", () => {
       expect(response.body).toEqual(newCourier);
     });
 
-    // TODO: make updates cleaner
     it("should respond with 200 update courrier with new capacity", async () => {
       const newCourier = createCourier();
       await request.put("/couriers").send(newCourier);
 
-      const updatedCourrier = createCourier({ id: newCourier.id });
-      const response = await request.put("/couriers").send(updatedCourrier);
+      const updatedCourier = createCourier({ id: newCourier.id });
+      const response = await request.put("/couriers").send(updatedCourier);
 
       expect(response.statusCode).toEqual(200);
-      expect(response.body).toEqual(updatedCourrier);
+      expect(response.body).toEqual(updatedCourier);
+    });
+
+    it("should fail with 422 on validation error (id can't be 0)", async () => {
+      const newCourier = createCourier({ id: 0 });
+      const response = await request.put("/couriers").send(newCourier);
+
+      expect(response.statusCode).toEqual(422);
+      expect(response.body).toEqual(
+        expect.objectContaining({ message: "Validation Failed" })
+      );
+    });
+
+    it("should fail with 422 on validation error (max_capacity must be positive)", async () => {
+      const newCourier = createCourier({ max_capacity: -3 });
+      const response = await request.put("/couriers").send(newCourier);
+
+      expect(response.statusCode).toEqual(422);
+      expect(response.body).toEqual(
+        expect.objectContaining({ message: "Validation Failed" })
+      );
     });
   });
 
@@ -49,6 +68,24 @@ describe("Couriers", () => {
       expect(response.statusCode).toEqual(404);
       expect(response.body).toEqual({});
     });
+
+    it("should fail with 422 on validation error (id must be positive integer)", async () => {
+      const response = await request.delete(`/couriers/foo`);
+
+      expect(response.statusCode).toEqual(422);
+      expect(response.body).toEqual(
+        expect.objectContaining({ message: "Validation Failed" })
+      );
+    });
+
+    it("should fail with 422 on validation error (id must be positive integer)", async () => {
+      const response = await request.delete(`/couriers/1.5`);
+
+      expect(response.statusCode).toEqual(422);
+      expect(response.body).toEqual(
+        expect.objectContaining({ message: "Validation Failed" })
+      );
+    });
   });
 
   describe("GET /couriers/lookup", () => {
@@ -68,6 +105,17 @@ describe("Couriers", () => {
 
       expect(_.sortBy(response.body, "id")).toEqual(
         _.sortBy(sortedCouriers.slice(0, 8), "id")
+      );
+    });
+
+    it("should fail with 422 on validation error (required_capacity must be a integer)", async () => {
+      const response = await request.get("/couriers/lookup").query({
+        required_capacity: "foo",
+      });
+
+      expect(response.statusCode).toEqual(422);
+      expect(response.body).toEqual(
+        expect.objectContaining({ message: "Validation Failed" })
       );
     });
   });

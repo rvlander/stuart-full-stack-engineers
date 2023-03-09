@@ -18,6 +18,12 @@ import { NotFoundError, ValidateErrorJSON } from "../utils";
 
 @Route("couriers")
 export class CouriersController extends Controller {
+  /**
+   * Creates or update a courier.
+   *
+   * @param requestBody
+   * @returns the created courier
+   */
   @Response<ValidateErrorJSON>(422, "Validation failed")
   @Response(201, "Created")
   @Response(200, "OK")
@@ -35,6 +41,14 @@ export class CouriersController extends Controller {
     return courier;
   }
 
+  /**
+   * Deletes the courier fiven an id.
+   *
+   * @param id the id of the courier to delete
+   * @isInt id
+   * @minimum id 1
+   * @returns no content
+   */
   @Response(404, "Not Found")
   @SuccessResponse(204)
   @Delete("{id}")
@@ -50,6 +64,13 @@ export class CouriersController extends Controller {
     return undefined;
   }
 
+  /**
+   * Retrieves a list of couriers that can handle a certain amount of capacity.
+   * @param required_capacity
+   * @isInt required_capacity
+   * @minimum required_capacity 0
+   * @returns the list of Couriers matching this capacity
+   */
   @Response<ValidateErrorJSON>(422, "Validation failed")
   @Get("lookup")
   @SuccessResponse(200)

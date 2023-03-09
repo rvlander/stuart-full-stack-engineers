@@ -11,6 +11,7 @@ export const createNCouriers = (n: number): Courier[] => {
   return _.range(n).map((id) =>
     createCourier({
       id: id + 1,
+      max_capacity: (id + 1) * 2,
     })
   );
 };

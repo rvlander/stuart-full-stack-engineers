@@ -1,7 +1,7 @@
 import { Courier } from "./couriers";
 
 import * as couriersManager from "../../database/managers/couriersManager";
-import { NotFoundError } from "api/utils";
+import { NotFoundError } from "../../api/utils";
 
 export class CouriersService {
   public async upsert(
