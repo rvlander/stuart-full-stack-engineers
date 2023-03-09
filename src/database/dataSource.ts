@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { Courier } from "./entity/Courier";
-import { database } from "src/config";
+import { database } from "../config";
 
 export const AppDataSource = new DataSource({
   type: "postgres",

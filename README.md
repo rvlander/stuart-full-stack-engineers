@@ -51,7 +51,6 @@ npm run test:watch
 
 #### Migrations
 
-````
-npm run typeorm -- -d src/database/dataSource.ts migration:generate src/database/migration/<name>,
 ```
-````
+npm run typeorm -- -d src/database/dataSource.ts migration:generate src/database/migration/<name>
+```

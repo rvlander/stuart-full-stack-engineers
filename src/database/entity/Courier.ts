@@ -1,10 +1,13 @@
-import { Entity, PrimaryColumn, Column } from "typeorm";
+import { Entity, PrimaryColumn, Column, Index, Check } from "typeorm";
 
 @Entity()
+@Check("id > 0")
+@Check("max_capacity >= 0")
 export class Courier {
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "integer", nullable: false })
   id: number;
 
-  @Column()
+  @Column({ type: "integer", nullable: false })
+  @Index()
   max_capacity: number;
 }
