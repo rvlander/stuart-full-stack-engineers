@@ -9,7 +9,7 @@
 
 ## Bonus goals
 
-- I decided to go with project architecture and setup appropriate tools (formatting, linting, CI, migrations, ...) to have a good base to work from.
+- I decided to go with project architecture and setup appropriate tools (formatting, linting, CI, migrations, pre-commit hook, ...) to have a good base to work from.
 
 ## Thoughts on proposed bonus goals
 
