@@ -1,7 +1,7 @@
 {
   "name": "couriers-capacity-api",
   "version": "1.0.0",
-  "description": "A microservice providing capacity of Stuart couriers",
+  "description": "A microservice for managing capcity of couriers",
   "main": "build/src/server.js",
   "scripts": {
     "dev": "NODE_ENV=development concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
@@ -19,7 +19,6 @@
   },
   "keywords": [],
   "author": "Gaëtan André",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
     "lodash": "^4.17.21",
