@@ -9,10 +9,10 @@ afterAll(() => destroy());
 beforeEach(() => clearAll());
 
 describe("Couriers", () => {
-  describe("POST /couriers", () => {
+  describe("PUT /couriers", () => {
     it("should respond 201 and return the newly courier with capacity", async () => {
       const newCourier = createCourier();
-      const response = await request.post("/couriers").send(newCourier);
+      const response = await request.put("/couriers").send(newCourier);
 
       expect(response.statusCode).toEqual(201);
       expect(response.body).toEqual(newCourier);
@@ -21,10 +21,10 @@ describe("Couriers", () => {
     // TODO: make updates cleaner
     it("should respond with 200 update courrier with new capacity", async () => {
       const newCourier = createCourier();
-      await request.post("/couriers").send(newCourier);
+      await request.put("/couriers").send(newCourier);
 
       const updatedCourrier = createCourier({ id: newCourier.id });
-      const response = await request.post("/couriers").send(updatedCourrier);
+      const response = await request.put("/couriers").send(updatedCourrier);
 
       expect(response.statusCode).toEqual(201);
       expect(response.body).toEqual(updatedCourrier);
@@ -34,7 +34,7 @@ describe("Couriers", () => {
   describe("DELETE /couriers", () => {
     it("should respond with 204 status and have no content", async () => {
       const courrierToDelete = createCourier();
-      await request.post("/couriers").send(courrierToDelete);
+      await request.put("/couriers").send(courrierToDelete);
 
       const response = await request.delete(`/couriers/${courrierToDelete.id}`);
 
@@ -55,7 +55,7 @@ describe("Couriers", () => {
     it("should respond with 200 and returns valid couriers (whose capaciy is <= the requested capacity)", async () => {
       const couriers = createNCouriers(10);
       await Promise.all(
-        couriers.map((courier) => request.post(`/couriers`).send(courier))
+        couriers.map((courier) => request.put(`/couriers`).send(courier))
       );
 
       const sortedCouriers = _.sortBy(couriers, "max_capacity");

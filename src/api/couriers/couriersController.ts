@@ -4,7 +4,7 @@ import {
   Get,
   Query,
   Path,
-  Post,
+  Put,
   Delete,
   Route,
   SuccessResponse,
@@ -20,7 +20,8 @@ import { ValidateErrorJSON } from "../utils";
 export class CouriersController extends Controller {
   @Response<ValidateErrorJSON>(422, "Validation failed")
   @SuccessResponse(201, "Created")
-  @Post()
+  @SuccessResponse(200, "OK")
+  @Put()
   public async createCoursier(@Body() requestBody: Courier): Promise<Courier> {
     this.setStatus(201);
     await new CouriersService().upsert(
