@@ -13,7 +13,7 @@
 
 ## Thoughts on proposed bonus goals
 
-I am happy to share I would have tackled them during the interview :).
+I am happy to share how I would have tackled them during the interview :).
 
 ## Possible evolutions and improvements
 

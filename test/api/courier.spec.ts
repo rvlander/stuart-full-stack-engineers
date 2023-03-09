@@ -89,7 +89,7 @@ describe("Couriers", () => {
   });
 
   describe("GET /couriers/lookup", () => {
-    it("should respond with 200 and returns valid couriers (whose capaciy is <= the requested capacity)", async () => {
+    it("should respond with 200 and returns valid couriers (whose capacity is <= the requested capacity)", async () => {
       const couriers = createNCouriers(10);
       await Promise.all(
         couriers.map((courier) => request.put(`/couriers`).send(courier))
@@ -101,10 +101,10 @@ describe("Couriers", () => {
       });
 
       expect(response.statusCode).toEqual(200);
-      expect(response.body).toHaveLength(8);
+      expect(response.body).toHaveLength(3);
 
       expect(_.sortBy(response.body, "id")).toEqual(
-        _.sortBy(sortedCouriers.slice(0, 8), "id")
+        _.sortBy(sortedCouriers.slice(7), "id")
       );
     });
 

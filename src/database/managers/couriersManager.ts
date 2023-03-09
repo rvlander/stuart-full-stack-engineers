@@ -1,6 +1,6 @@
 import { AppDataSource } from "../dataSource";
 import { Courier } from "../entity/Courier";
-import { LessThanOrEqual } from "typeorm";
+import { MoreThanOrEqual } from "typeorm";
 
 const courierRepository = AppDataSource.getRepository(Courier);
 
@@ -22,7 +22,7 @@ export async function remove(id: number): Promise<void> {
 
 export async function lookup(requiredCapacity: number): Promise<Courier[]> {
   const couriers = await courierRepository.findBy({
-    max_capacity: LessThanOrEqual(requiredCapacity),
+    max_capacity: MoreThanOrEqual(requiredCapacity),
   });
   return couriers;
 }
