@@ -26,3 +26,10 @@ export async function lookup(requiredCapacity: number): Promise<Courier[]> {
   });
   return couriers;
 }
+
+export async function get(id: number): Promise<Courier | null> {
+  const courier = await courierRepository.findOne({
+    where: { id },
+  });
+  return courier;
+}

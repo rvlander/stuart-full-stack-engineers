@@ -26,7 +26,7 @@ describe("Couriers", () => {
       const updatedCourrier = createCourier({ id: newCourier.id });
       const response = await request.put("/couriers").send(updatedCourrier);
 
-      expect(response.statusCode).toEqual(201);
+      expect(response.statusCode).toEqual(200);
       expect(response.body).toEqual(updatedCourrier);
     });
   });
@@ -46,7 +46,7 @@ describe("Couriers", () => {
       const notFoundCourier = createCourier();
       const response = await request.delete(`/couriers/${notFoundCourier.id}`);
 
-      expect(response.statusCode).toEqual(204);
+      expect(response.statusCode).toEqual(404);
       expect(response.body).toEqual({});
     });
   });
