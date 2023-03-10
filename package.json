@@ -14,7 +14,7 @@
     "db:runMigrations": "npm run typeorm -- -d src/database/dataSource.ts migration:run",
     "db:psql": "docker exec -it -e PGPASSWORD=test some-postgres psql -U test -d test",
     "checkFormat": "prettier --check .",
-    "checkLint": "eslint .",
+    "checkLint": "eslint --max-warnings 0 .",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -52,7 +52,7 @@
   },
   "lint-staged": {
     "**/*.ts": [
-      "eslint",
+      "eslint --max-warnings 0",
       "prettier --write --ignore-unknown"
     ]
   }
