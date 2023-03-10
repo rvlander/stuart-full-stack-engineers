@@ -1,3 +1,7 @@
+/**
+ * Courier object contains information related to max capacity regarding the volume
+ * a courier can carry.
+ */
 export interface Courier {
   /**
    *  The id of the courier whom we track capacity

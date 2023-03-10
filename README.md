@@ -19,6 +19,7 @@ Then, Install and switch to correct node environment:
 ```
 nvm install
 nvm use
+npm install
 ```
 
 ### Setup database
@@ -26,8 +27,8 @@ nvm use
 Launch the database and launch migrations
 
 ```
-npm db:run
-npm db:runMigrations
+npm run db:run
+npm run db:runMigrations
 ```
 
 #### Running
